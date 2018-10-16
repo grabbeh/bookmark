@@ -58,8 +58,9 @@ class Page extends Component {
                         let { email, username } = values
                         addSubscriber({ variables: { email, username } }).then(
                           response => {
+                            console.log(response)
                             this.setState({
-                              successMessage: 'YOU HAZ SUBSCRIBERED!'
+                              successMessage: 'Thanks! Check your email to confirm your subscription!'
                             })
                             setSubmitting(false)
                           },

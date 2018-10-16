@@ -7,7 +7,7 @@ const handle = app.getRequestHandler()
 const proxy = require('http-proxy-middleware')
 const compression = require('compression')
 
-let GRAPHQL_SERVER = 'http://localhost:8000/graphql'
+let GRAPHQL_SERVER = 'http://localhost:9000/graphql'
 
 var setCustomHeaderFunc = function (req, res, next) {
   res.set('SpecialCustomHeader', 'super-awesome-value')
@@ -36,5 +36,5 @@ app.prepare().then(() => {
   server.get('*', (req, res) => {
     handle(req, res)
   })
-  server.listen(3000)
+  server.listen(4000)
 })
