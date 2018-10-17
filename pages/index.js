@@ -24,6 +24,11 @@ const transformErrors = errorMessages => {
 }
 
 class Page extends Component {
+  
+  state = {
+    successMessage: false
+  }
+
   render () {
     return (
       <Fragment>
@@ -54,6 +59,7 @@ class Page extends Component {
                         let { email, username } = values
                         addSubscriber({ variables: { email, username } }).then(
                           response => {
+                            this.setState({successMessage: "Thanks! Check your email to confirm your subscription!"})
                             setSubmitting(false)
                           },
                           e => {
@@ -124,9 +130,9 @@ class Page extends Component {
                                 <Text fontWeight='bold' color='red'>
                                   {errors.existingSubscription}
                                 </Text>}
-                              {response && response.data &&
+                              {successMessage &&
                                 <Text fontWeight='bold' color='red'>
-                                  'Thanks! Check your email to confirm your subscription!'
+                                   {successMessage}
                                 </Text>}
                             </Box>
                           </Form>
