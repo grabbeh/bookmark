@@ -24,11 +24,7 @@ const transformErrors = errorMessages => {
 }
 
 class Page extends Component {
-  state = {
-    successMessage: false
-  }
   render () {
-    let { successMessage } = this.state
     return (
       <Fragment>
         <Flex flexWrap='wrap'>
@@ -54,14 +50,10 @@ class Page extends Component {
                         email: Yup.string().email().required('Required'),
                         username: Yup.string().required('Required')
                       })}
-                      onSubmit={(values, { setSubmitting, setErrors }) => {
+                      handleSubmit={(values, { setSubmitting, setErrors }) => {
                         let { email, username } = values
                         addSubscriber({ variables: { email, username } }).then(
                           response => {
-                            console.log(response)
-                            this.setState({
-                              successMessage: 'Thanks! Check your email to confirm your subscription!'
-                            })
                             setSubmitting(false)
                           },
                           e => {
@@ -132,9 +124,9 @@ class Page extends Component {
                                 <Text fontWeight='bold' color='red'>
                                   {errors.existingSubscription}
                                 </Text>}
-                              {successMessage &&
+                              {response && response.data &&
                                 <Text fontWeight='bold' color='red'>
-                                  {successMessage}
+                                  'Thanks! Check your email to confirm your subscription!'
                                 </Text>}
                             </Box>
                           </Form>
