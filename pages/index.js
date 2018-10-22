@@ -72,7 +72,7 @@ class Page extends Component {
                           'Please give your Twitter username'
                         )
                       })}
-                      handleSubmit={(values, { setSubmitting, setErrors }) => {
+                      onSubmit={(values, { setSubmitting, setErrors }) => {
                         setErrors({
                           email: false,
                           username: false
