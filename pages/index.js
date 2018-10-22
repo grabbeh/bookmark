@@ -27,151 +27,156 @@ const transformErrors = errorMessages => {
 
 class Page extends Component {
   state = {
-    successMessage: false
+    successMessage: false,
+    isLoaded: false
+  }
+
+  componentDidMount () {
+    this.setState({ isLoaded: true })
   }
 
   render () {
-    let { successMessage } = this.state
+    let { successMessage, isLoaded } = this.state
     return (
       <Fragment>
-        <AnimatedBox initialPose='hidden' pose='visible'>
-          <Box
-            initialPose='hidden'
-            pose='visible'
-            zIndex='1'
-            width={[0.9, 0.8, 1 / 2]}
-          >
-            <Box width={1} pt={[3, 5]} pb={5} px={[3, 5]}>
-              <Text fontSize={[4, 5, 6]} fontWeight='bold'>
-                shipper
-                <FaShip
-                  style={{
-                    paddingLeft: '30px',
-                    fontSize: '65px'
-                  }}
-                />
-              </Text>
-              <Text color='gray' fontSize={[3, 4]}>
-                Get weekly emails with content from your recently favourited tweets
-              </Text>
-              <Box>
-                <Mutation mutation={ADD_SUBSCRIBER_MUTATION}>
-                  {addSubscriber => (
-                    <Formik
-                      initialValues={{
-                        email: '',
-                        username: '',
-                        existingSubscription: ''
+        <Flex flexWrap='wrap'>
+          <Box width={[0.8, 2 / 3]}>
+            <AnimatedBox
+              initialPose='hidden'
+              pose={isLoaded ? 'visible' : 'hidden'}
+            >
+              <Box zIndex='1' width={[0.9, 0.8, 1 / 2]}>
+                <Box width={1} pt={[3, 5]} pb={5} px={[3, 5]}>
+                  <Text fontSize={[4, 5, 6]} fontWeight='bold'>
+                    shipper
+                    <FaShip
+                      style={{
+                        paddingLeft: '30px',
+                        fontSize: '65px'
                       }}
-                      validateOnChange={false}
-                      validationSchema={Yup.object().shape({
-                        email: Yup.string()
-                          .email()
-                          .required('Please provide an email address'),
-                        username: Yup.string().required(
-                          'Please give your Twitter username'
-                        )
-                      })}
-                      onSubmit={(values, { setSubmitting, setErrors }) => {
-                        setErrors({
-                          email: false,
-                          username: false
-                        })
-                        let { email, username } = values
-                        addSubscriber({
-                          variables: { email, username }
-                        }).then(
-                          response => {
-                            this.setState({
-                              successMessage: 'Thanks! Check your email to confirm your subscription!'
-                            })
-                            setSubmitting(false)
-                          },
-                          e => {
-                            const errorMessages = e.graphQLErrors.map(
-                              error => error.message
+                    />
+                  </Text>
+                  <Text color='gray' fontSize={[3, 4]}>
+                    Get weekly emails with content from your recently favourited tweets
+                  </Text>
+                  <Box>
+                    <Mutation mutation={ADD_SUBSCRIBER_MUTATION}>
+                      {addSubscriber => (
+                        <Formik
+                          initialValues={{
+                            email: '',
+                            username: '',
+                            existingSubscription: ''
+                          }}
+                          validateOnChange={false}
+                          validationSchema={Yup.object().shape({
+                            email: Yup.string()
+                              .email()
+                              .required('Please provide an email address'),
+                            username: Yup.string().required(
+                              'Please give your Twitter username'
                             )
-                            let errors = transformErrors(errorMessages)
-                            setSubmitting(false)
+                          })}
+                          onSubmit={(values, { setSubmitting, setErrors }) => {
                             setErrors({
-                              ...errors
+                              email: false,
+                              username: false
                             })
-                          }
-                        )
-                      }}
-                    >
-                      {props => {
-                        const {
-                          dirty,
-                          values,
-                          touched,
-                          errors,
-                          isSubmitting,
-                          handleChange
-                        } = props
-                        return (
-                          <Form>
-                            <Input
-                              id='username'
-                              handleChange={handleChange}
-                              value={values.username}
-                              fontSize={[3, 4]}
-                              borderBottom='3px solid'
-                              borderColor='gray'
-                              placeholder='@username'
-                            />
+                            let { email, username } = values
+                            addSubscriber({
+                              variables: { email, username }
+                            }).then(
+                              res => {
+                                this.setState({
+                                  successMessage: 'Thanks! Check your email to confirm your subscription!'
+                                })
+                                setSubmitting(false)
+                              },
+                              e => {
+                                const errorMessages = e.graphQLErrors.map(
+                                  error => error.message
+                                )
+                                let errors = transformErrors(errorMessages)
+                                setSubmitting(false)
+                                setErrors({
+                                  ...errors
+                                })
+                              }
+                            )
+                          }}
+                        >
+                          {props => {
+                            const {
+                              values,
+                              touched,
+                              errors,
+                              isSubmitting,
+                              handleChange
+                            } = props
+                            return (
+                              <Form>
+                                <Input
+                                  id='username'
+                                  handleChange={handleChange}
+                                  value={values.username}
+                                  fontSize={[3, 4]}
+                                  borderBottom='3px solid'
+                                  borderColor='gray'
+                                  placeholder='@username'
+                                />
 
-                            {touched.username &&
-                              <Error error={errors.username}>
-                                {errors.username}
-                              </Error>}
-                            <Input
-                              id='email'
-                              handleChange={handleChange}
-                              value={values.email}
-                              mt={4}
-                              fontSize={[3, 4]}
-                              borderBottom='3px solid'
-                              borderColor='gray'
-                              placeholder='email'
-                            />
+                                {touched.username &&
+                                  <Error error={errors.username}>
+                                    {errors.username}
+                                  </Error>}
+                                <Input
+                                  id='email'
+                                  handleChange={handleChange}
+                                  value={values.email}
+                                  mt={4}
+                                  fontSize={[3, 4]}
+                                  borderBottom='3px solid'
+                                  borderColor='gray'
+                                  placeholder='email'
+                                />
 
-                            {touched.email &&
-                              <Error error={errors.email}>
-                                {errors.email}
-                              </Error>}
-                            <Box mt={3}>
-                              <Button
-                                type='submit'
-                                disabled={isSubmitting}
-                                bg='green'
-                                fontSize={[1, 3]}
-                                borderRadius={2}
-                                px={[2, 3]}
-                                py={[1, 2]}
-                              >
-                                SUBSCRIBE
-                              </Button>
-                              {errors.existingSubscription &&
-                                <Text fontWeight='bold' color='red'>
-                                  {errors.existingSubscription}
-                                </Text>}
-                              {successMessage &&
-                                <Text fontWeight='bold' color='red'>
-                                  {successMessage}
-                                </Text>}
-                            </Box>
-                          </Form>
-                        )
-                      }}
-                    </Formik>
-                  )}
-                </Mutation>
+                                {touched.email &&
+                                  <Error error={errors.email}>
+                                    {errors.email}
+                                  </Error>}
+                                <Box mt={3}>
+                                  <Button
+                                    type='submit'
+                                    disabled={isSubmitting}
+                                    bg='green'
+                                    fontSize={[1, 3]}
+                                    borderRadius={2}
+                                    px={[2, 3]}
+                                    py={[1, 2]}
+                                  >
+                                    SUBSCRIBE
+                                  </Button>
+                                  {errors.existingSubscription &&
+                                    <Text mt={2} fontWeight='bold' color='red'>
+                                      {errors.existingSubscription}
+                                    </Text>}
+                                  {successMessage &&
+                                    <Text fontWeight='bold' color='red'>
+                                      {successMessage}
+                                    </Text>}
+                                </Box>
+                              </Form>
+                            )
+                          }}
+                        </Formik>
+                      )}
+                    </Mutation>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
+            </AnimatedBox>
           </Box>
-
-        </AnimatedBox>
+        </Flex>
       </Fragment>
     )
   }
