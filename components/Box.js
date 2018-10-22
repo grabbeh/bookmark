@@ -56,6 +56,7 @@ const boxShadow = props => ({
 }) */
 
 const StyledBox = styled.div`
+
   ${boxShadow} ${borders} ${space} ${size} ${maxWidth} ${transform} ${width} ${height} ${fontWeight} ${fontSize} ${color} ${borderRadius} ${position} ${top} ${bottom} ${left} ${right} ${zIndex} ${skew} ${borderColor};
 `
 

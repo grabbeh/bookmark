@@ -1,4 +1,5 @@
 import Box from '../components/Box'
+import AnimatedBox from '../components/AnimatedBox'
 import Text from '../components/Text'
 import Input from '../components/Input'
 import Button from '../components/Button'
@@ -9,6 +10,7 @@ import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { Mutation } from 'react-apollo'
 import ADD_SUBSCRIBER_MUTATION from '../queries/addSubscriberMutation'
+import Error from '../components/Error'
 
 const transformErrors = errorMessages => {
   const errors = {
@@ -24,22 +26,32 @@ const transformErrors = errorMessages => {
 }
 
 class Page extends Component {
-  
   state = {
     successMessage: false
   }
 
   render () {
+    let { successMessage } = this.state
     return (
       <Fragment>
-        <Flex flexWrap='wrap'>
-          <Box zIndex='1' width={1 / 2}>
-            <Box pt={[3, 5]} pb={5} px={[3, 5]}>
+        <AnimatedBox initialPose='hidden' pose='visible'>
+          <Box
+            initialPose='hidden'
+            pose='visible'
+            zIndex='1'
+            width={[0.9, 0.8, 1 / 2]}
+          >
+            <Box width={1} pt={[3, 5]} pb={5} px={[3, 5]}>
               <Text fontSize={[4, 5, 6]} fontWeight='bold'>
                 shipper
-                <FaShip style={{ paddingLeft: '30px', fontSize: '65px' }} />
+                <FaShip
+                  style={{
+                    paddingLeft: '30px',
+                    fontSize: '65px'
+                  }}
+                />
               </Text>
-              <Text color=' gray' fontSize={[3, 4]}>
+              <Text color='gray' fontSize={[3, 4]}>
                 Get weekly emails with content from your recently favourited tweets
               </Text>
               <Box>
@@ -51,15 +63,28 @@ class Page extends Component {
                         username: '',
                         existingSubscription: ''
                       }}
+                      validateOnChange={false}
                       validationSchema={Yup.object().shape({
-                        email: Yup.string().email().required('Required'),
-                        username: Yup.string().required('Required')
+                        email: Yup.string()
+                          .email()
+                          .required('Please provide an email address'),
+                        username: Yup.string().required(
+                          'Please give your Twitter username'
+                        )
                       })}
                       handleSubmit={(values, { setSubmitting, setErrors }) => {
+                        setErrors({
+                          email: false,
+                          username: false
+                        })
                         let { email, username } = values
-                        addSubscriber({ variables: { email, username } }).then(
+                        addSubscriber({
+                          variables: { email, username }
+                        }).then(
                           response => {
-                            this.setState({successMessage: "Thanks! Check your email to confirm your subscription!"})
+                            this.setState({
+                              successMessage: 'Thanks! Check your email to confirm your subscription!'
+                            })
                             setSubmitting(false)
                           },
                           e => {
@@ -77,6 +102,7 @@ class Page extends Component {
                     >
                       {props => {
                         const {
+                          dirty,
                           values,
                           touched,
                           errors,
@@ -94,11 +120,11 @@ class Page extends Component {
                               borderColor='gray'
                               placeholder='@username'
                             />
-                            {errors.username &&
-                              touched.username &&
-                              <Text fontWeight='bold' color='red'>
+
+                            {touched.username &&
+                              <Error error={errors.username}>
                                 {errors.username}
-                              </Text>}
+                              </Error>}
                             <Input
                               id='email'
                               handleChange={handleChange}
@@ -109,11 +135,11 @@ class Page extends Component {
                               borderColor='gray'
                               placeholder='email'
                             />
-                            {errors.email &&
-                              touched.email &&
-                              <Text fontWeight='bold' color='red'>
+
+                            {touched.email &&
+                              <Error error={errors.email}>
                                 {errors.email}
-                              </Text>}
+                              </Error>}
                             <Box mt={3}>
                               <Button
                                 type='submit'
@@ -132,7 +158,7 @@ class Page extends Component {
                                 </Text>}
                               {successMessage &&
                                 <Text fontWeight='bold' color='red'>
-                                   {successMessage}
+                                  {successMessage}
                                 </Text>}
                             </Box>
                           </Form>
@@ -144,15 +170,8 @@ class Page extends Component {
               </Box>
             </Box>
           </Box>
-          <Box transform={1} height='100vh' width={1 / 3} bg='light-purple' />
-          <Box
-            position='absolute'
-            right='0'
-            height='100vh'
-            width={1 / 3}
-            bg='light-purple'
-          />
-        </Flex>
+
+        </AnimatedBox>
       </Fragment>
     )
   }
