@@ -41,10 +41,7 @@ class Page extends Component {
       <Fragment>
         <Flex flexWrap='wrap'>
           <Box width={[0.8, 2 / 3]}>
-            <AnimatedBox
-              initialPose='hidden'
-              pose={isLoaded ? 'visible' : 'hidden'}
-            >
+            <AnimatedBox pose={isLoaded ? 'visible' : 'hidden'}>
               <Box zIndex='1' width={[0.9, 0.8, 1 / 2]}>
                 <Box width={1} pt={[3, 5]} pb={5} px={[3, 5]}>
                   <Text fontSize={[4, 5, 6]} fontWeight='bold'>
