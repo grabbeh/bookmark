@@ -11,5 +11,6 @@ const Error = styled(
 font-weight: bold;`
 
 export default ({ error, children }) => {
+  console.log(error)
   return <Error pose={error ? 'visible' : 'hidden'}>{children}</Error>
 }
