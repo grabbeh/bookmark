@@ -52,7 +52,7 @@ class Input extends React.Component {
     } = this.props
 
     return (
-      <Box bg='white' p={0} fontSize={3}>
+      <Box width={1} bg='white' p={0} fontSize={3}>
         {label &&
           <Text>
             <label htmlFor={value}>
