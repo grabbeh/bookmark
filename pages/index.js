@@ -32,11 +32,13 @@ class Page extends Component {
   }
 
   componentDidMount () {
+    console.log("Mounted")
     this.setState({ isLoaded: true })
   }
 
   render () {
     let { successMessage, isLoaded } = this.state
+    console.log(isLoaded)
     return (
       <Fragment>
         <Flex flexWrap='wrap'>
