@@ -116,6 +116,7 @@ class Page extends Component {
                                   id='username'
                                   handleChange={handleChange}
                                   value={values.username}
+                                  width={1}
                                   fontSize={[3, 4]}
                                   borderBottom='3px solid'
                                   borderColor='blue'
@@ -131,6 +132,7 @@ class Page extends Component {
                                   id='email'
                                   handleChange={handleChange}
                                   value={values.email}
+                                  width={1}
                                   mt={3}
                                   fontSize={[3, 4]}
                                   borderBottom='3px solid'
