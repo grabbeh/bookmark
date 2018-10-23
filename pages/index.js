@@ -77,7 +77,8 @@ class Page extends Component {
                           onSubmit={(values, { setSubmitting, setErrors }) => {
                             setErrors({
                               email: false,
-                              username: false
+                              username: false, 
+                              existingSubscription: false
                             })
                             let { email, username } = values
                             addSubscriber({
