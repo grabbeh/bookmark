@@ -44,7 +44,7 @@ class Page extends Component {
             <AnimatedBox pose={isLoaded ? 'show' : 'hide'}>
               <Box zIndex='1' width={[0.9, 0.8, 1 / 2]}>
                 <Box width={1} pt={[3, 5]} pb={5} px={[3, 5]}>
-                  <Text fontSize={[4, 5, 6]} fontWeight='bold'>
+                  <Text fontColor='blue' fontSize={[4, 5, 6]} fontWeight='bold'>
                     shipper
                     <FaShip
                       style={{
@@ -118,7 +118,7 @@ class Page extends Component {
                                   value={values.username}
                                   fontSize={[3, 4]}
                                   borderBottom='3px solid'
-                                  borderColor='gray'
+                                  borderColor='blue'
                                   placeholder='@username'
                                 />
 
@@ -133,7 +133,7 @@ class Page extends Component {
                                   mt={4}
                                   fontSize={[3, 4]}
                                   borderBottom='3px solid'
-                                  borderColor='gray'
+                                  borderColor='blue'
                                   placeholder='email'
                                 />
                               {touched.email &&
