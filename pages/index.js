@@ -62,8 +62,7 @@ class Page extends Component {
                         <Formik
                           initialValues={{
                             email: '',
-                            username: '',
-                            existingSubscription: ''
+                            username: ''
                           }}
                           validateOnChange={false}
                           validationSchema={Yup.object().shape({
@@ -158,12 +157,11 @@ class Page extends Component {
                                   >
                                     SUBSCRIBE
                                   </Button>
-                                  {errors.existingSubscription &&
                                    <Box mt={2}>
                                     <Error error={errors.existingSubscription}>
                                       {errors.existingSubscription}
                                     </Error>
-                                  </Box>}
+                                  </Box>
                                   {successMessage &&
                                     <Text fontWeight='bold' color='red'>
                                       {successMessage}
