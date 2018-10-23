@@ -158,9 +158,11 @@ class Page extends Component {
                                     SUBSCRIBE
                                   </Button>
                                   {errors.existingSubscription &&
-                                    <Text mt={2} fontWeight='bold' color='red'>
+                                   <Box mt={2}>
+                                    <Error error={errors.existingSubscription}>
                                       {errors.existingSubscription}
-                                    </Text>}
+                                    </Error>
+                                  </Box>}
                                   {successMessage &&
                                     <Text fontWeight='bold' color='red'>
                                       {successMessage}
