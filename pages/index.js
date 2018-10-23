@@ -136,11 +136,12 @@ class Page extends Component {
                                   borderColor='blue'
                                   placeholder='email'
                                 />
+                              <Box height={20}>
                               {touched.email &&
-                     
                                   <Error error={errors.email}>
                                     {errors.email}
                                   </Error>}
+                              </Box>
                                 <Box mt={3}>
                                   <Button
                                     type='submit'
