@@ -123,10 +123,10 @@ class Page extends Component {
                                   placeholder='@username'
                                 />
 
-                         
+                                {touched.username &&
                                   <Error error={errors.username}>
                                     {errors.username}
-                                  </Error>
+                                  </Error>}
                                 <Input
                                   id='email'
                                   handleChange={handleChange}
@@ -137,11 +137,11 @@ class Page extends Component {
                                   borderColor='gray'
                                   placeholder='email'
                                 />
-
-                       
+                              {touched.email &&
+                     
                                   <Error error={errors.email}>
                                     {errors.email}
-                                  </Error>
+                                  </Error>}
                                 <Box mt={3}>
                                   <Button
                                     type='submit'
