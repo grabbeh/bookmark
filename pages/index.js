@@ -44,7 +44,7 @@ class Page extends Component {
             <AnimatedBox pose={isLoaded ? 'show' : 'hide'}>
               <Box zIndex='1' width={[0.9, 0.8, 1 / 2]}>
                 <Box width={1} pt={[3, 5]} pb={5} px={[3, 5]}>
-                  <Text fontColor='blue' fontSize={[4, 5, 6]} fontWeight='bold'>
+                  <Text color='blue' fontSize={[4, 5, 6]} fontWeight='bold'>
                     shipper
                     <FaShip
                       style={{
