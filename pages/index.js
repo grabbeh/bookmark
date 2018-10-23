@@ -121,16 +121,17 @@ class Page extends Component {
                                   borderColor='blue'
                                   placeholder='@username'
                                 />
-
+                                <Box height={20}>
                                 {touched.username &&
                                   <Error error={errors.username}>
                                     {errors.username}
                                   </Error>}
+                                </Box>
                                 <Input
                                   id='email'
                                   handleChange={handleChange}
                                   value={values.email}
-                                  mt={4}
+                                  mt={3}
                                   fontSize={[3, 4]}
                                   borderBottom='3px solid'
                                   borderColor='blue'
