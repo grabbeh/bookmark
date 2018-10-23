@@ -67,6 +67,7 @@ class Page extends Component {
                             username: '',
                             existingSubscription: ''
                           }}
+                          validateOnChange={false}
                           validationSchema={Yup.object().shape({
                             email: Yup.string()
                               .email()
