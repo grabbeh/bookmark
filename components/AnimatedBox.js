@@ -12,12 +12,12 @@ const Box = props => {
 }
 
 const TweenBox = posed(Box)({
-  visible: {
+  show: {
     opacity: 1,
     y: 0,
     transition: { type: 'spring', stiffness: 100 }
   },
-  hidden: {
+  hide: {
     opacity: 0,
     y: -300
   }
