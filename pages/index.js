@@ -43,7 +43,7 @@ class Page extends Component {
           <Box>
             <AnimatedBox pose={isLoaded ? 'show' : 'hide'}>
               <Box zIndex='1' width={[1, 0.8, 1 / 2]}>
-                <Box width={1} pt={[3, 5]} pb={5} px={[3, 5]}>
+                <Box pt={[3, 5]} pb={5} px={[3, 5]}>
                   <Text fontSize={[4, 5, 6]} fontWeight='bold'>
                     shipper
                     <FaShip
