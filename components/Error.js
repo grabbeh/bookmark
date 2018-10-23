@@ -7,8 +7,10 @@ const Error = styled(
     visible: { opacity: 1, x: 0, transition: { duration: 1000 } },
     hidden: { opacity: 0, x: -100 }
   })
-)`color: ${themeGet('colors.red')};
-font-weight: bold;`
+)`
+color: ${themeGet('colors.red')};
+font-weight: bold;
+height: 20px;`
 
 export default ({ error, children }) => {
   return <Error pose={error ? 'visible' : 'hidden'}>{children}</Error>
