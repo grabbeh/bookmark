@@ -10,7 +10,7 @@ const Error = styled(
 )`
 color: ${themeGet('colors.red')};
 font-weight: bold;
-height: 20px;`
+`
 
 export default ({ error, children }) => {
   return <Error pose={error ? 'visible' : 'hidden'}>{children}</Error>
