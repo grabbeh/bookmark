@@ -14,11 +14,13 @@ body {
 
 img {
     object-fit: cover;
+    height: 100vh;
   }
 
 html {
   height:100vh;
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
