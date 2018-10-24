@@ -40,7 +40,7 @@ class Page extends Component {
     return (
       <Fragment>
         <Flex flexWrap='wrap'>
-          <Box width={[1, 0.8, 1 / 2]}>
+          <Box width={[1, 1, 1 / 2]}>
             <AnimatedBox pose={isLoaded ? 'show' : 'hide'}>
               <Box zIndex='1'>
                 <Box pt={[3, 5]} pb={5} px={[3, 5]}>
