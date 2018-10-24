@@ -12,6 +12,10 @@ body {
   width: 100%; 
 }
 
+img {
+    object-fit: cover;
+  }
+
 html {
   height:100vh;
 }
