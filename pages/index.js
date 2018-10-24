@@ -179,7 +179,7 @@ class Page extends Component {
             </AnimatedBox>
           </Box>
           <Box width={[1, 0.8, 1/2]}>
-            <img className="image" src="/static/shipper.jpg"/>
+            <img className="image" src="/static/shipper2.jpg"/>
            </Box>
         </Flex>
       </Fragment>
