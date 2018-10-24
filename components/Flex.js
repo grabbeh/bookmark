@@ -13,7 +13,7 @@ import {
   alignSelf
 } from 'styled-system'
 
-export const Box = styled('div')(
+const Box = styled('div')(
   {
     boxSizing: 'border-box'
   },
@@ -36,7 +36,7 @@ Box.propTypes = {
   ...fontSize.propTypes
 }
 
-export const Flex = styled(Box)(
+const Flex = styled('div')(
   {
     display: 'flex'
   },
@@ -54,3 +54,5 @@ Flex.propTypes = {
   ...alignItems.propTypes,
   ...justifyContent.propTypes
 }
+
+export { Box, Flex }

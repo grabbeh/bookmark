@@ -12,6 +12,12 @@ color: ${themeGet('colors.red')};
 font-weight: bold;
 `
 
-export default ({ error, children }) => {
-  return <Error pose={error ? 'visible' : 'hidden'}>{children}</Error>
+const FullError = ({ error, children }) => {
+  return (
+    <Error pose={error ? 'visible' : 'hidden'}>
+      {children}
+    </Error>
+  )
 }
+
+export default FullError

@@ -23,4 +23,6 @@ const TweenBox = posed(Box)({
   }
 })
 
+TweenBox.displayName = 'TweenBox'
+
 export default TweenBox

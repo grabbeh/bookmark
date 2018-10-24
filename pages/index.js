@@ -5,7 +5,6 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import { Flex } from '../components/Flex'
 import React, { Component, Fragment } from 'react'
-import { FaShip } from 'react-icons/fa'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { Mutation } from 'react-apollo'
@@ -40,18 +39,12 @@ class Page extends Component {
     return (
       <Fragment>
         <Flex flexWrap='wrap'>
-          <Box width={[1, 1, 1 / 2]}>
+          <Box zIndex='1' width={[1, 1, 1 / 2]}>
             <AnimatedBox pose={isLoaded ? 'show' : 'hide'}>
-              <Box zIndex='1'>
+              <Box>
                 <Box pt={[3, 5]} pb={5} px={[3, 5]}>
                   <Text fontSize={[4, 5, 6]} fontWeight='bold'>
                     shipper
-                    <FaShip
-                      style={{
-                        paddingLeft: '30px',
-                        fontSize: '65px'
-                      }}
-                    />
                   </Text>
                   <Text color='gray' fontSize={[3, 4]}>
                     Get weekly emails with content from your recently favourited tweets
@@ -76,7 +69,7 @@ class Page extends Component {
                           onSubmit={(values, { setSubmitting, setErrors }) => {
                             setErrors({
                               email: false,
-                              username: false, 
+                              username: false,
                               existingSubscription: false
                             })
                             let { email, username } = values
@@ -123,10 +116,10 @@ class Page extends Component {
                                   placeholder='@username'
                                 />
                                 <Box height={20}>
-                                {touched.username &&
-                                  <Error error={errors.username}>
-                                    {errors.username}
-                                  </Error>}
+                                  {touched.username &&
+                                    <Error error={errors.username}>
+                                      {errors.username}
+                                    </Error>}
                                 </Box>
                                 <Input
                                   id='email'
@@ -139,12 +132,12 @@ class Page extends Component {
                                   borderColor='blue'
                                   placeholder='email'
                                 />
-                              <Box height={20}>
-                              {touched.email &&
-                                  <Error error={errors.email}>
-                                    {errors.email}
-                                  </Error>}
-                              </Box>
+                                <Box height={20}>
+                                  {touched.email &&
+                                    <Error error={errors.email}>
+                                      {errors.email}
+                                    </Error>}
+                                </Box>
                                 <Box mt={3}>
                                   <Button
                                     type='submit'
@@ -157,7 +150,7 @@ class Page extends Component {
                                   >
                                     SUBSCRIBE
                                   </Button>
-                                   <Box mt={2}>
+                                  <Box mt={2}>
                                     <Error error={errors.existingSubscription}>
                                       {errors.existingSubscription}
                                     </Error>
@@ -178,9 +171,9 @@ class Page extends Component {
               </Box>
             </AnimatedBox>
           </Box>
-          <Box width={[1, 1, 1/2]}>
-            <img className="image" src="/static/shipper2.jpg"/>
-           </Box>
+          <Box width={[1, 1, 1 / 2]}>
+            <img className='image' src='/static/shipper2.jpg' />
+          </Box>
         </Flex>
       </Fragment>
     )

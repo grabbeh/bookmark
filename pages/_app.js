@@ -9,7 +9,7 @@ import theme from '../theme'
 import '../index.css'
 
 class MyApp extends App {
-  static async getInitialProps ({ Component, router, ctx }) {
+  static async getInitialProps ({ Component, ctx }) {
     let pageProps = {}
 
     if (Component.getInitialProps) {
