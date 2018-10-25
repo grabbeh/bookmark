@@ -19,7 +19,7 @@ const TweenBox = posed(Box)({
   },
   hide: {
     opacity: 0,
-    y: -300
+    y: -200
   }
 })
 
