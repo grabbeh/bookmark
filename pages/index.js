@@ -126,7 +126,6 @@ class Page extends Component {
                                   handleChange={handleChange}
                                   value={values.email}
                                   width={1}
-                                  mt={3}
                                   fontSize={[3, 4]}
                                   borderBottom='3px solid'
                                   borderColor='blue'
@@ -138,7 +137,7 @@ class Page extends Component {
                                       {errors.email}
                                     </Error>}
                                 </Box>
-                                <Box mt={3}>
+                                <Box mt={2}>
                                   <Button
                                     type='submit'
                                     disabled={isSubmitting}
