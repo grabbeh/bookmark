@@ -1,23 +1,28 @@
 import posed from 'react-pose'
-import styled from 'styled-components'
-import { themeGet } from 'styled-system'
+import BasicText from './Text'
 
-const Error = styled(
-  posed.div({
-    visible: { opacity: 1, x: 0, transition: { duration: 1000 } },
-    hidden: { opacity: 0, x: -100 }
-  })
-)`
-color: ${themeGet('colors.red')};
-font-weight: bold;
-`
-
-const FullError = ({ error, children }) => {
+const Text = props => {
+  const { children, innerRef } = props
   return (
-    <Error pose={error ? 'visible' : 'hidden'}>
-      {children}
-    </Error>
+    <div ref={innerRef}>
+      <BasicText color='red' fontWeight='bold'>
+        {children}
+      </BasicText>
+    </div>
   )
 }
 
-export default FullError
+const PosedError = posed(Text)({
+  visible: { opacity: 1, x: 0, transition: { duration: 1000 } },
+  hidden: { opacity: 0, x: -100 }
+})
+
+const Error = ({ error, children }) => {
+  return (
+    <PosedError pose={error ? 'visible' : 'hidden'}>
+      {children}
+    </PosedError>
+  )
+}
+
+export default Error

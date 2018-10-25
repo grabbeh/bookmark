@@ -10,12 +10,15 @@ body {
 
 .image {
   width: 100%; 
-  height: 100%;
 }
 
 img {
     object-fit: cover;
   }
+
+.dn {
+  display: none;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
